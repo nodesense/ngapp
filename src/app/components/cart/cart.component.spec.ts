@@ -3,21 +3,23 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CartComponent } from './cart.component';
 
-fdescribe('CartComponent', () => {
+describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
 
   // initialize test environment
   beforeEach(async(() => {
     // create a new module, only for testing
+    // isolate component and dependencies
+    // create a test module, that contains only component, services needed for testing
     TestBed.configureTestingModule({
       imports: [ 
         // other modules
        // material modules
       ],
-      declarations: [ CartComponent ],
+      declarations: [ CartComponent ], // all the components that may be needed for CartComponent
       providers: [
-        DataService
+        DataService, // services
       ]
     })
     .compileComponents(); // jit compiling the html into js 
@@ -27,7 +29,9 @@ fdescribe('CartComponent', () => {
     // All DI to be resolved
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // this will let angular to perform dirty check and render template
+    // 
+    fixture.detectChanges(); 
   });
 
   // test case/spec
@@ -41,13 +45,11 @@ fdescribe('CartComponent', () => {
     expect(component.counter).toBe(1);
   })
 
-
-
   it("should be initialize called", () => {
-
     spyOn(component, 'initialize');
     component.incr();
     expect(component.initialize).toHaveBeenCalled();
+    // check if 1 is passed as argument or not
     expect(component.initialize).toHaveBeenCalledWith(1)
   })
 

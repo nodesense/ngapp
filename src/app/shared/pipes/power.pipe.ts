@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 // {{ 3 | power: 2}} ==> 9
-// {{ 3 | power}} ==> 3
+// {{ 3 | power}} ==> 3    // 3 ^ 1
 @Pipe({
   name: 'power'
 })

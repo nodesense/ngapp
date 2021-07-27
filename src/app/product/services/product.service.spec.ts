@@ -4,14 +4,16 @@ import { HttpClientTestingModule,
         HttpTestingController // for mock purpose
        } from '@angular/common/http/testing';
 
-// should not use HttpClientModule, as this is real implementation, shall make API call in test
+// should not use HttpClientModule, as this is real implementation,
+//    shall make API call in test, should not happen
+// insted use HttpClientTestingModule
 import {HttpClientModule} from '@angular/common/http';
 
 import { ProductService } from './product.service';
 import { Product } from '../models/product';
 
 
-fdescribe('ProductService', () => {
+describe('ProductService', () => {
   let productService: ProductService;
   let httpMock: HttpTestingController;
 
@@ -19,9 +21,7 @@ fdescribe('ProductService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule], // mock the apis call
       providers: [ProductService]
-
     });
-
 
     productService = TestBed.get(ProductService);
     httpMock = TestBed.get(HttpTestingController);
@@ -32,14 +32,6 @@ fdescribe('ProductService', () => {
     expect(service).toBeTruthy();
   }));
 
-
-  it("test timer ", (done) => {
-    setInterval(()=> {
-      console.log("Set Interval on timer ");
-      expect(1 + 2).toBe(3);
-      done();
-    }, 20000);
-  }, 30000); // total timeout for this particular test
  
   it('should return good response with data', (doneFn) => {
      console.log("TEstme ")

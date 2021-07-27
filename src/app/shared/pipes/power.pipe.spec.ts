@@ -1,6 +1,6 @@
 import { PowerPipe } from './power.pipe';
 
-fdescribe('PowerPipe Test Suite', () => {
+describe('PowerPipe Test Suite', () => {
 
   beforeEach(() => {
     console.log("Pipe before each");
