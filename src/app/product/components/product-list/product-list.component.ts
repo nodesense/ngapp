@@ -15,7 +15,7 @@ export class ProductListComponent implements OnInit {
 
   // observable, always use $ at the end, even for promise instance, it is good to have $
 
-  products$:Observable<Product[]>;
+  products$: Observable<Product[]>;
 
   fields: string[] = ['year', 'price', 'weight'];
   predicates: string[] = ['>', '<', '=='];
@@ -25,8 +25,8 @@ export class ProductListComponent implements OnInit {
   selectedPredicate: string;
   expectedValue: string | number;
   // context, it is an array of product
-  // products: Product[]; // don't use any
-  // susbcription: Subscription;
+  //  products: Product[]; // don't use any
+  susbcription: Subscription;
  
   constructor(private productService: ProductService ) { }
 
@@ -42,9 +42,9 @@ export class ProductListComponent implements OnInit {
 
    }
   
-  // ngOnDestroy() {
-  //   if (this.susbcription) {
-  //     this.susbcription.unsubscribe(); // cancel the pending calls
-  //   }
-  // }
+  ngOnDestroy() {
+    // if (this.susbcription) {
+    //   this.susbcription.unsubscribe(); // cancel the pending calls
+    // }
+  }
 }
