@@ -9,13 +9,20 @@
   <a routerLink="/products" class="button" routerLinkActive="success"> Products </a>
 
   <a routerLink="/cart" class="button" routerLinkActive="success"> Cart </a>
+  <a routerLink="/ngx-cart" class="button" routerLinkActive="success"> Ngx Cart </a>
+
   <a routerLink="/about" class="button" routerLinkActive="success"> About </a>
   <a routerLink="/contact" class="button" routerLinkActive="success"> Contact </a>
 
-
+  
   <app-auth-menu></app-auth-menu>
 
   <span>Amount {{amount$ | async | currency:'INR'}}</span>
+
+
+  <button> ngrx {{amountFromStore$ | async | currency:'INR'}}</button>
+
+  
 
   <span> Total {{total}} </span>
   <hr />

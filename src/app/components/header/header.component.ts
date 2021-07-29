@@ -1,6 +1,9 @@
 import { DataService } from './../../shared/services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { CartState } from 'src/app/state/reducers/cart.reducer';
+import { selectCartAmount } from 'src/app/state/selectors/cart.selectors';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +18,15 @@ export class HeaderComponent implements OnInit {
   total$: Observable<number>;
   total: number;
 
+  amountFromStore$: Observable<number>;
+ 
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, 
+        private store: Store<{ cartState: CartState }>) {
       console.log("Header created");
+
+      // this amount#$ subcribe caleld only if amount is changed
+      this.amountFromStore$ = this.store.select(selectCartAmount)
 
       // this.amount = dataService.amount;
       this.amount$ = dataService.amount$;

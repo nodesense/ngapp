@@ -12,7 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { SharedModule } from './shared/shared.module';
-
+import { StoreModule } from '@ngrx/store';
 
 // ng 4.3 onwards
 import {HttpClientModule} from '@angular/common/http';
@@ -26,7 +26,10 @@ import {Routes, RouterModule} from '@angular/router';
 //import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
 import { LoggerService } from './services/logger.service';
-
+import { NgrxCartComponent } from './components/ngrx-cart/ngrx-cart.component';
+import { cartReducer } from './state/reducers/cart.reducer';
+import { AppState } from './state/models/app.state';
+ 
 const routes: Routes = [
     {
         path: '',
@@ -35,6 +38,11 @@ const routes: Routes = [
     {
         path: 'cart',
         component: CartComponent
+    },
+
+    {
+        path: 'ngx-cart',
+        component: NgrxCartComponent
     },
     
     {
@@ -73,7 +81,10 @@ const routes: Routes = [
         // TODO: Lazy loading
         // ProductModule,
 
-         AuthModule
+         AuthModule,
+         StoreModule.forRoot({
+            cartState: cartReducer 
+      })
     ],
     declarations: [
         AppComponent,
@@ -84,6 +95,7 @@ const routes: Routes = [
         AboutComponent,
         CartComponent,
         NotFoundComponent,
+        NgrxCartComponent,
         //HeaderComponent,
         //FooterComponent,
         //HomeComponent

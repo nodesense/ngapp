@@ -1,0 +1,36 @@
+<h2>Ng Rx Cart</h2>
+
+
+
+<p>Amount {{amount$ | async | currency:'INR'}} </p>
+<p>Count  {{totalItems$ | async  }} </p>
+
+<button (click)="addItem()">Add Item</button>
+<button (click)="empty()">
+    Empty
+</button>
+
+<table  >
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+        <th>Remove</th>
+    </tr>
+
+    <tr *ngFor="let cartItem of items$ | async ">
+        <td>{{cartItem.name | uppercase}}</td>
+        <td>{{cartItem.price | currency:'INR' }}</td>
+        <td>{{cartItem.qty}}</td>
+        <td>{{cartItem.price * cartItem.qty | currency: 'INR'}}</td>
+        <button (click)="removeItem(cartItem.id)">X</button>
+    </tr>
+</table>
+ 
+
+<!-- 
+<p>cart state amount</p>
+<pre>
+     {{cartState$ | async | json}} 
+</pre> -->
