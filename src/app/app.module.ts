@@ -29,6 +29,8 @@ import { LoggerService } from './services/logger.service';
 import { NgrxCartComponent } from './components/ngrx-cart/ngrx-cart.component';
 import { cartReducer } from './state/reducers/cart.reducer';
 import { AppState } from './state/models/app.state';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
  
 const routes: Routes = [
     {
@@ -84,7 +86,11 @@ const routes: Routes = [
          AuthModule,
          StoreModule.forRoot({
             cartState: cartReducer 
-      })
+      }),
+         ServiceWorkerModule.register('ngsw-worker.js', { 
+                enabled: environment.production,
+                registrationStrategy: "registerImmediately"
+            })
     ],
     declarations: [
         AppComponent,
